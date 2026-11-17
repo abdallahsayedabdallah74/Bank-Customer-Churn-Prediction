@@ -45,10 +45,10 @@ st.markdown(
         font-weight: 600 !important;
     }
 
-    /* Submit Button - Using #815B5B with smooth hover */
+    /* Submit Button - Fixed with contrasting white text */
     .stFormSubmitButton button {
         background-color: #815B5B !important;
-        color: #FFF8EA !important;
+        color: #ffffff !important;
         font-weight: bold;
         width: 100%;
         border-radius: 8px;
@@ -59,7 +59,7 @@ st.markdown(
     }
     .stFormSubmitButton button:hover {
         background-color: #6a4a4a !important;
-        color: #FFF8EA !important;
+        color: #ffffff !important;
     }
     </style>
     """,
