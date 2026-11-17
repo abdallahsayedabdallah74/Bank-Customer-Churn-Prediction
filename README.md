@@ -1,0 +1,53 @@
+<div align="center">
+
+# 🏦 Bank Customer Churn — Prediction & Analysis
+
+**Predicting which bank customers are about to leave — and why.**
+
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Railway](https://img.shields.io/badge/Deployed%20on-Railway-0B0D0E?logo=railway&logoColor=white)](https://railway.app/)
+
+</div>
+
+---
+
+## 📌 Overview
+
+Customer churn — when a customer closes their account or stops using bank services — is one of the costliest challenges in the banking sector, as acquiring a new client is significantly more expensive than retaining an existing one.
+
+This project provides an end-to-end machine learning pipeline on the **Bank Customer Churn** dataset (`Bank.csv`), deploying the trained model as a high-performance **FastAPI REST API** on **Railway**, paired with an interactive, custom-themed **Streamlit Web Application** deployed on **Streamlit Community Cloud**.
+
+---
+
+## 🗂️ Project Structure
+
+```text
+Bank-Customer-Churn-Prediction/
+│
+├── main.py                           # FastAPI backend application
+├── app.py                            # Streamlit frontend web application
+├── Project_F.ipynb                   # Exploratory Data Analysis (EDA) & model training notebook
+│
+├── best_churn_model.pkl              # Serialized best-performing ML classifier
+├── model_scaler.pkl                  # Fitted feature scaler
+├── preprocessor.pkl                  # Preprocessing & encoding pipeline
+│
+├── Bank.csv                          # Bank customer dataset
+├── activity_credit_churn.png         # EDA visualization: Activity & Credit Score vs Churn
+├── churn_distribution.png            # EDA visualization: Target class distribution
+├── demographics_churn.png            # EDA visualization: Demographics vs Churn
+├── numeric_features_churn.png        # EDA visualization: Numerical features distribution
+├── tenure_products_churn.png         # EDA visualization: Tenure & Products vs Churn
+│
+├── Procfile                          # Railway deployment start command
+├── requirements.txt                  # Python dependencies
+├── .gitignore                        # Git ignore rules
+└── README.md                         # Project documentation
+
+
+1. Clone the repository
+git clone [https://github.com/abdallahsayedabdallah74/Bank-Customer-Churn-Prediction.git](https://github.com/abdallahsayedabdallah74/Bank-Customer-Churn-Prediction.git)
+cd Bank-Customer-Churn-Prediction
