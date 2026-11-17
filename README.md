@@ -92,20 +92,18 @@ curl -X POST http://localhost:8000/predict \
     "Gender": "Male"
   }'
 ```
-Example response:
-
+### Example response:
+```bash
 JSON
 {
   "status": "Churning",
   "churn_probability": "54.23%"
 }
 ```
-5. Run the Streamlit Frontend locally
+### 5. Run the Streamlit Frontend locally
 Open a second terminal (while FastAPI is running) and execute:
-
-```bash
+```bash 
 streamlit run app.py
-```
 Then open http://localhost:8501 in your browser.
 ```
 🌐 Live Deployment Architecture
