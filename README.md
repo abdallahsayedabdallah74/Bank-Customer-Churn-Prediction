@@ -99,3 +99,30 @@ JSON
   "status": "Churning",
   "churn_probability": "54.23%"
 }
+```
+5. Run the Streamlit Frontend locally
+Open a second terminal (while FastAPI is running) and execute:
+
+```bash
+streamlit run app.py
+```
+Then open http://localhost:8501 in your browser.
+```
+🌐 Live Deployment Architecture
+```bash
+Backend — FastAPI on Railway
+Connected the GitHub repository (abdallahsayedabdallah74/Bank-Customer-Churn-Prediction) to Railway.
+
+Railway automatically detects the Procfile:
+
+Plaintext
+web: uvicorn main:app --host 0.0.0.0 --port \$PORT
+Live API Endpoint: https://web-production-927c0f79.up.railway.app/predict
+
+Frontend — Streamlit Community Cloud
+Connected app.py from the same GitHub repository to Streamlit Community Cloud.
+
+Configured API_URL in app.py to communicate directly with the live Railway FastAPI service.
+
+Styled with a custom light-mode palette (#FFF8EA background & #815B5B typography/accents) for clean readability and responsive UX.
+```
