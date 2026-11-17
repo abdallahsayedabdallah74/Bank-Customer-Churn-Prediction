@@ -1,56 +1,73 @@
 import requests
 import streamlit as st
 
-# Page Configuration with Light Theme forcing
+# Page Configuration
 st.set_page_config(
     page_title="Bank Customer Churn Prediction", page_icon="🏦", layout="centered"
 )
 
-# Custom CSS for bright, professional styling
+# Custom CSS for clean, readable, bright styling
 st.markdown(
     """
     <style>
-    /* Main background color */
+    /* Main background */
     .stApp {
-        background-color: #f8f9fa;
+        background-color: #f4f6f9;
     }
-    /* Title styling */
+    
+    /* Main Title Styling - Dark & Clear */
     h1 {
-        color: #1f4e78;
+        color: #0f172a !important;
         text-align: center;
         font-family: 'Helvetica Neue', sans-serif;
+        font-weight: 700;
     }
-    /* Form container background styling */
+    
+    /* Subtitle Styling */
+    p {
+        color: #475569 !important;
+        font-size: 16px;
+    }
+
+    /* Form Container */
     [data-testid="stForm"] {
         background-color: #ffffff;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        border: 1px solid #e3e6f0;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e2e8f0;
     }
-    /* Button styling */
+
+    /* Labels inside form - Make them dark and clear */
+    label, .stNumberInput label, .stSelectbox label {
+        color: #1e293b !important;
+        font-weight: 600 !important;
+    }
+
+    /* Submit Button Styling */
     .stFormSubmitButton button {
-        background-color: #2e7d32;
-        color: white;
+        background-color: #2563eb !important;
+        color: white !important;
         font-weight: bold;
         width: 100%;
         border-radius: 8px;
-        padding: 10px;
+        padding: 12px;
         border: none;
+        font-size: 16px;
     }
     .stFormSubmitButton button:hover {
-        background-color: #1b5e20;
-        color: white;
+        background-color: #1d4ed8 !important;
+        color: white !important;
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-st.title("🏦 Bank Customer Churn Prediction App")
+st.title("🏦 Bank Customer Churn Prediction")
 st.markdown(
-    "<p style='text-align: center; color: #555555; font-size: 16px;'>Enter"
-    " customer details below to check if they are at risk of churning.</p>",
+    "<p style='text-align: center;'>Enter customer details below to check if"
+    " they are at risk of churning.</p>",
     unsafe_allow_html=True,
 )
 
@@ -123,4 +140,4 @@ if submit_button:
       st.error(f"Error from API: {response.text}")
 
   except Exception as e:
-    st.error(f"An error occurred: {str(e)}")
+    st.error(f"Could not connect to the API server. Error: {e}")
