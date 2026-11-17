@@ -6,47 +6,47 @@ st.set_page_config(
     page_title="Bank Customer Churn Prediction", page_icon="🏦", layout="centered"
 )
 
-# Custom CSS for clean, readable, bright styling
+# Custom CSS using your exact Color Palette
 st.markdown(
     """
     <style>
-    /* Main background */
+    /* Main Background - Light Cream/Off-white from the bottom palette */
     .stApp {
-        background-color: #f4f6f9;
+        background-color: #f5f2eb;
     }
     
-    /* Main Title Styling - Dark & Clear */
+    /* Main Title - Dark Navy (Top color of your palette) */
     h1 {
-        color: #0f172a !important;
+        color: #1a2f4c !important;
         text-align: center;
         font-family: 'Helvetica Neue', sans-serif;
         font-weight: 700;
     }
     
-    /* Subtitle Styling */
+    /* Subtitle */
     p {
-        color: #475569 !important;
+        color: #4a6572 !important;
         font-size: 16px;
     }
 
-    /* Form Container */
+    /* Form Container - Clean white box with a soft border */
     [data-testid="stForm"] {
         background-color: #ffffff;
         padding: 30px;
         border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 6px 24px rgba(26, 47, 76, 0.08);
+        border: 2px solid #8ca8bf;
     }
 
-    /* Labels inside form - Make them dark and clear */
+    /* Form Labels - Styled with the medium-dark blue tone */
     label, .stNumberInput label, .stSelectbox label {
-        color: #1e293b !important;
+        color: #2c4a6f !important;
         font-weight: 600 !important;
     }
 
-    /* Submit Button Styling */
+    /* Submit Button - Using the rich dark navy from your palette */
     .stFormSubmitButton button {
-        background-color: #2563eb !important;
+        background-color: #1a2f4c !important;
         color: white !important;
         font-weight: bold;
         width: 100%;
@@ -54,9 +54,10 @@ st.markdown(
         padding: 12px;
         border: none;
         font-size: 16px;
+        transition: 0.3s;
     }
     .stFormSubmitButton button:hover {
-        background-color: #1d4ed8 !important;
+        background-color: #2c4a6f !important;
         color: white !important;
     }
     </style>
@@ -104,7 +105,7 @@ with st.form("churn_form"):
     )
 
   geography = st.selectbox("Geography", options=["France", "Spain", "Germany"])
-  gender = st.selectbox("Gender", options=["Male", "Female"])
+  gender = st.selectbox("Gender", options=[ "Male", "Female" ])
 
   submit_button = st.form_submit_button(label="Predict Churn")
 
