@@ -110,21 +110,21 @@ Then open http://localhost:8501 in your browser.
 ```bash
 Deploy the API to Railway
 Push the repository to GitHub.
-
 Go to railway.app → New Project → Deploy from GitHub.
-
+```
 Railway will auto-detect the Procfile:
-
-
+```bash
 web: uvicorn main:app --host 0.0.0.0 --port $PORT
+```
 Deploy and copy the live Railway URL (e.g., https://web-production-927c0f79.up.railway.app).
+
+
 Backend — FastAPI on Railway
 Connected the GitHub repository (abdallahsayedabdallah74/Bank-Customer-Churn-Prediction) to Railway.
-
 Railway automatically detects the Procfile:
-
-
+```bash
 web: uvicorn main:app --host 0.0.0.0 --port \$PORT
+```
 Live API Endpoint: https://web-production-927c0f79.up.railway.app/predict
 
 Frontend — Streamlit Community Cloud
@@ -133,7 +133,8 @@ Connected app.py from the same GitHub repository to Streamlit Community Cloud.
 Configured API_URL in app.py to communicate directly with the live Railway FastAPI service.
 
 Styled with a custom light-mode palette (#FFF8EA background & #815B5B typography/accents) for clean readability and responsive UX.
-```
+
+
 ## 📊 Model & Input Features
 
 ### Input Features
