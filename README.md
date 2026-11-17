@@ -46,7 +46,7 @@ Bank-Customer-Churn-Prediction/
 ├── requirements.txt                  # Python dependencies
 ├── .gitignore                        # Git ignore rules
 └── README.md                         # Project documentation
-
+```
 ---
 
 ## 🚀 Getting Started (Local Development)
