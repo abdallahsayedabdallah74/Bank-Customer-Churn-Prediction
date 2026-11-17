@@ -6,16 +6,16 @@ st.set_page_config(
     page_title="Bank Customer Churn Prediction", page_icon="🏦", layout="centered"
 )
 
-# Custom CSS using your exact custom color codes
+# Custom CSS for perfect contrast and custom color palette
 st.markdown(
     """
     <style>
-    /* Main Background - Using #FFF8EA */
+    /* Main Background */
     .stApp {
         background-color: #FFF8EA;
     }
     
-    /* Main Title - Using #815B5B */
+    /* Main Title */
     h1 {
         color: #815B5B !important;
         text-align: center;
@@ -23,14 +23,19 @@ st.markdown(
         font-weight: 700;
     }
     
-    /* Subtitle & text */
-    p {
+    /* Subtitle & general text */
+    p, .stMarkdown p {
         color: #815B5B !important;
         font-size: 16px;
-        opacity: 0.85;
+        font-weight: 500;
     }
 
-    /* Form Container - Clean white card to pop out on the cream background */
+    /* Subheaders like Prediction Results */
+    h2, h3 {
+        color: #815B5B !important;
+    }
+
+    /* Form Container */
     [data-testid="stForm"] {
         background-color: #ffffff;
         padding: 30px;
@@ -39,16 +44,16 @@ st.markdown(
         border: 2px solid #815B5B;
     }
 
-    /* Form Labels - Using #815B5B for crystal clear readability */
+    /* Form Labels */
     label, .stNumberInput label, .stSelectbox label {
         color: #815B5B !important;
         font-weight: 600 !important;
     }
 
-    /* Submit Button - Fixed with contrasting white text */
+    /* Submit Button */
     .stFormSubmitButton button {
         background-color: #815B5B !important;
-        color: #ffffff !important;
+        color: #FFF8EA !important;
         font-weight: bold;
         width: 100%;
         border-radius: 8px;
@@ -59,7 +64,16 @@ st.markdown(
     }
     .stFormSubmitButton button:hover {
         background-color: #6a4a4a !important;
-        color: #ffffff !important;
+        color: #FFF8EA !important;
+    }
+
+    /* Fix Streamlit error/success boxes text contrast */
+    div[data-baseweb="notification"] {
+        background-color: #ffffff !important;
+        border: 2px solid #815B5B !important;
+    }
+    div[data-baseweb="notification"] p {
+        color: #815B5B !important;
     }
     </style>
     """,
