@@ -47,7 +47,55 @@ Bank-Customer-Churn-Prediction/
 ├── .gitignore                        # Git ignore rules
 └── README.md                         # Project documentation
 
+---
 
-1. Clone the repository
+## 🚀 Getting Started (Local Development)
+
+### 1. Clone the repository
+
+```bash
 git clone [https://github.com/abdallahsayedabdallah74/Bank-Customer-Churn-Prediction.git](https://github.com/abdallahsayedabdallah74/Bank-Customer-Churn-Prediction.git)
 cd Bank-Customer-Churn-Prediction
+```
+
+### 2. Set up the environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### 3. Run the FastAPI Backend locally
+
+```bash
+uvicorn main:app --reload
+```
+The API will be available at http://localhost:8000.
+Swagger UI Docs: http://localhost:8000/docs
+Health Check: http://localhost:8000/
+
+### 4. Test the /predict endpoint
+```bash
+curl -X POST http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "CreditScore": 650,
+    "Age": 35,
+    "Tenure": 3,
+    "Balance": 50000.0,
+    "NumOfProducts": 1,
+    "HasCrCard": 0,
+    "IsActiveMember": 0,
+    "EstimatedSalary": 60000.0,
+    "Geography": "France",
+    "Gender": "Male"
+  }'
+```
+Example response:
+
+JSON
+{
+  "status": "Churning",
+  "churn_probability": "54.23%"
+}
