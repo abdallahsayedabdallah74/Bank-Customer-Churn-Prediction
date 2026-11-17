@@ -108,12 +108,22 @@ Then open http://localhost:8501 in your browser.
 ```
 🌐 Live Deployment Architecture
 ```bash
+Deploy the API to Railway
+Push the repository to GitHub.
+
+Go to railway.app → New Project → Deploy from GitHub.
+
+Railway will auto-detect the Procfile:
+
+
+web: uvicorn main:app --host 0.0.0.0 --port $PORT
+Deploy and copy the live Railway URL (e.g., https://web-production-927c0f79.up.railway.app).
 Backend — FastAPI on Railway
 Connected the GitHub repository (abdallahsayedabdallah74/Bank-Customer-Churn-Prediction) to Railway.
 
 Railway automatically detects the Procfile:
 
-Plaintext
+
 web: uvicorn main:app --host 0.0.0.0 --port \$PORT
 Live API Endpoint: https://web-production-927c0f79.up.railway.app/predict
 
@@ -124,3 +134,37 @@ Configured API_URL in app.py to communicate directly with the live Railway FastA
 
 Styled with a custom light-mode palette (#FFF8EA background & #815B5B typography/accents) for clean readability and responsive UX.
 ```
+## 📊 Model & Input Features
+
+### Input Features
+
+| Feature | Type | Description / Values |
+| :--- | :--- | :--- |
+| `CreditScore` | `int` | Customer's credit score (`300` – `850`) |
+| `Geography` | `str` | Customer's country (`France`, `Spain`, `Germany`) |
+| `Gender` | `str` | Customer's gender (`Male`, `Female`) |
+| `Age` | `int` | Customer's age (`18` – `100`) |
+| `Tenure` | `int` | Number of years with the bank (`0` – `10`) |
+| `Balance` | `float` | Current account balance |
+| `NumOfProducts` | `int` | Number of bank products held (`1` – `4`) |
+| `HasCrCard` | `int` | Credit card ownership (`1` = Yes, `0` = No) |
+| `IsActiveMember` | `int` | Active membership status (`1` = Yes, `0` = No) |
+| `EstimatedSalary` | `float` | Customer's estimated annual salary |
+
+---
+
+## 🛠️ Tech Stack
+
+`Python` · `pandas` · `NumPy` · `scikit-learn` · `imbalanced-learn` · `FastAPI` · `Uvicorn` · `HTML/CSS/JS`
+
+---
+
+## 📁 Dataset
+
+[Bank Customer Churn] — 165,034 rows × 14 columns.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
