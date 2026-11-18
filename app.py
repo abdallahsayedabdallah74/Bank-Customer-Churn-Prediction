@@ -157,7 +157,7 @@ if submit_button:
         text_c = "#137333"
         icon = "✅"
 
-      # كارد النتائج النهائي - نضاف بـ HTML و CSS مباشر وصريح
+      # كارد النتائج النهائي
       st.markdown(
           f"""
             <div style="
@@ -178,6 +178,54 @@ if submit_button:
         """,
           unsafe_allow_html=True,
       )
+
+      # --- AI Recommendations to reduce churn risk (مضاف هنا بالإنجليزية بالكامل) ---
+      if status == "Churning":
+        recommendations = []
+
+        if is_active_member == 0:
+          recommendations.append(
+              "✅ **Activate Membership:** Switching the customer to an"
+              " 'Active Member' significantly decreases churn risk."
+          )
+        if num_of_products < 2:
+          recommendations.append(
+              "✅ **Cross-sell Products:** Propose an additional product"
+              " (such as a credit card or savings account) to increase"
+              " engagement."
+          )
+        if balance < 10000:
+          recommendations.append(
+              "✅ **Offer Savings Incentives:** Encourage balance growth"
+              " through targeted investment or deposit bonuses."
+          )
+
+        if recommendations:
+          st.markdown(
+              """
+                <div style="
+                    background-color: #FFF3CD;
+                    border-left: 6px solid #FFC107;
+                    padding: 16px;
+                    border-radius: 8px;
+                    margin-top: 12px;
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+                ">
+                    <p style="color: #856404 !important; font-size: 16px; font-weight: bold; margin: 0 0 8px 0; text-align: left !important;">
+                        💡 AI Retention Recommendations:
+                    </p>
+                """,
+              unsafe_allow_html=True,
+          )
+          for rec in recommendations:
+            st.markdown(
+                f"<p"
+                f" style='color: #333333 !important; font-size: 14px; margin:"
+                f" 4px 0; text-align: left !important;'>{rec}</p>",
+                unsafe_allow_html=True,
+            )
+          st.markdown("</div>", unsafe_allow_html=True)
+
     else:
       st.error(f"Error from API: {response.text}")
 
