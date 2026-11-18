@@ -6,36 +6,40 @@ st.set_page_config(
     page_title="Bank Customer Churn Prediction", page_icon="🏦", layout="centered"
 )
 
-# Custom CSS for perfect contrast and custom color palette
+# Custom CSS
 st.markdown(
     """
     <style>
-    /* Main Background */
+    /* ---------- Layout ---------- */
     .stApp {
         background-color: #FFF8EA;
     }
-    
-    /* Main Title */
+    .block-container {
+        max-width: 780px !important;
+        padding-top: 2.5rem;
+    }
+
+    /* ---------- Title ---------- */
     h1 {
         color: #815B5B !important;
         text-align: center;
         font-family: 'Helvetica Neue', sans-serif;
         font-weight: 700;
+        font-size: 2.1rem !important;
+        white-space: nowrap;
     }
-    
-    /* Subtitle & general text */
+
+    /* ---------- Text ---------- */
     p, .stMarkdown p {
         color: #815B5B !important;
         font-size: 16px;
         font-weight: 500;
     }
-
-    /* Subheaders like Prediction Results */
     h2, h3 {
         color: #815B5B !important;
     }
 
-    /* Form Container */
+    /* ---------- Form container ---------- */
     [data-testid="stForm"] {
         background-color: #ffffff;
         padding: 30px;
@@ -44,30 +48,86 @@ st.markdown(
         border: 2px solid #815B5B;
     }
 
-    /* Form Labels */
-    label, .stNumberInput label, .stSelectbox label {
+    /* ---------- Labels ---------- */
+    label, label p, .stNumberInput label, .stSelectbox label {
         color: #815B5B !important;
         font-weight: 600 !important;
+        font-size: 14px !important;
     }
 
-    /* Submit Button */
-    .stFormSubmitButton button {
+    /* ---------- Inputs (light style instead of dark) ---------- */
+    div[data-baseweb="input"],
+    div[data-baseweb="base-input"],
+    div[data-baseweb="select"] > div {
+        background-color: #FFF8EA !important;
+        border: 1.5px solid #C9A9A6 !important;
+        border-radius: 8px !important;
+    }
+    div[data-baseweb="input"]:focus-within,
+    div[data-baseweb="select"] > div:focus-within {
+        border-color: #815B5B !important;
+        box-shadow: 0 0 0 2px rgba(129, 91, 91, 0.2) !important;
+    }
+    input, textarea,
+    div[data-baseweb="select"] div,
+    div[data-baseweb="select"] span {
+        color: #4a3333 !important;
+        -webkit-text-fill-color: #4a3333 !important;
+        font-weight: 500;
+    }
+    div[data-baseweb="select"] svg {
+        fill: #815B5B !important;
+    }
+
+    /* +/- buttons of number input */
+    .stNumberInput button {
+        background-color: #F3E3D3 !important;
+        color: #815B5B !important;
+        border: none !important;
+    }
+    .stNumberInput button:hover {
         background-color: #815B5B !important;
         color: #FFF8EA !important;
-        font-weight: bold;
+    }
+    .stNumberInput button svg {
+        fill: currentColor !important;
+    }
+
+    /* Dropdown menu list */
+    ul[role="listbox"],
+    div[data-baseweb="popover"] > div {
+        background-color: #ffffff !important;
+    }
+    li[role="option"] {
+        color: #815B5B !important;
+        background-color: #ffffff !important;
+    }
+    li[role="option"]:hover,
+    li[aria-selected="true"] {
+        background-color: #F3E3D3 !important;
+    }
+
+    /* ---------- Submit button ---------- */
+    .stFormSubmitButton button {
+        background-color: #815B5B !important;
         width: 100%;
         border-radius: 8px;
         padding: 12px;
         border: none;
-        font-size: 16px;
         transition: 0.3s;
+    }
+    .stFormSubmitButton button p,
+    .stFormSubmitButton button span,
+    .stFormSubmitButton button div {
+        color: #FFF8EA !important;
+        font-weight: bold !important;
+        font-size: 16px !important;
     }
     .stFormSubmitButton button:hover {
         background-color: #6a4a4a !important;
-        color: #FFF8EA !important;
     }
 
-    /* Fix Streamlit error/success boxes text contrast */
+    /* ---------- Error / notification boxes ---------- */
     div[data-baseweb="notification"] {
         background-color: #ffffff !important;
         border: 2px solid #815B5B !important;
@@ -148,8 +208,7 @@ if submit_button:
       probability = result.get("churn_probability")
 
       st.subheader("Prediction Results:")
-      
-      # تعديل تصميم الكارد الخاص بالنتيجة عشان يظهر بشكل شيك وواضح مع الألوان
+
       if status == "Churning":
         bg_c = "#FDECEA"
         border_c = "#D93025"
@@ -163,22 +222,15 @@ if submit_button:
 
       st.markdown(
           f"""
-            <div style="
-                background-color: {bg_c};
-                border-left: 6px solid {border_c};
-                padding: 18px;
-                border-radius: 8px;
-                margin-top: 10px;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            ">
-                <h4 style="color: {text_c} !important; margin: 0 0 6px 0; font-size: 18px; font-weight: bold;">
-                    {icon} Status: {status}
-                </h4>
-                <p style="color: #333333 !important; margin: 0; font-size: 16px; font-weight: 600;">
-                    Churn Probability: <span style="color: {text_c};">{probability}</span>
-                </p>
-            </div>
-        """,
+<div style="background-color: {bg_c}; border-left: 6px solid {border_c}; padding: 18px 20px; border-radius: 8px; margin-top: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+  <div style="color: {text_c} !important; margin: 0 0 8px 0; font-size: 20px; font-weight: 700;">
+    {icon} Status: {status}
+  </div>
+  <div style="color: #333333 !important; margin: 0; font-size: 16px; font-weight: 600;">
+    Churn Probability: <span style="color: {text_c} !important; font-weight: 700;">{probability}</span>
+  </div>
+</div>
+""",
           unsafe_allow_html=True,
       )
     else:
