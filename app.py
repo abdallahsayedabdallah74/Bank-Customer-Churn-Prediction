@@ -163,10 +163,10 @@ if submit_button:
                 margin-top: 10px;
                 box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             ">
-                <h4 style="margin: 0 0 6px 0; font-size: 18px; font-weight: bold;">
-                    <span style="color: {text_c} !important;">{icon} Status: {status}</span>
-                </h4>
-                <p style="color: #333333 !important; margin: 0; font-size: 16px; font-weight: 600;">
+                <p style="color: {text_c} !important; font-size: 18px; font-weight: bold; margin: 0 0 8px 0;">
+                    {icon} Status: {status}
+                </p>
+                <p style="color: #333333 !important; font-size: 16px; font-weight: 600; margin: 0;">
                     Churn Probability: <span style="color: {text_c} !important;">{probability}</span>
                 </p>
             </div>
