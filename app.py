@@ -58,7 +58,7 @@ div.stFormSubmitButton > button:hover {
 # 3. تحميل الموديل المحفوظ (عدّل الاسم لاسم ملفك)
 @st.cache_resource
 def load_model():
-    return joblib.load("churn_model.pkl")
+    return joblib.load("best_churn_model.pkl")
 
 
 try:
