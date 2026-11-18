@@ -50,10 +50,10 @@ st.markdown(
         font-weight: 600 !important;
     }
 
-    /* Submit Button */
-    .stFormSubmitButton button {
+    /* Submit Button Styling */
+    div.stFormSubmitButton > button {
         background-color: #815B5B !important;
-        color: #815B5B !important;
+        color: #FFF8EA !important;
         font-weight: bold;
         width: 100%;
         border-radius: 8px;
@@ -62,18 +62,9 @@ st.markdown(
         font-size: 16px;
         transition: 0.3s;
     }
-    .stFormSubmitButton button:hover {
-        background-color: #815B5B !important;
+    div.stFormSubmitButton > button:hover {
+        background-color: #6a4a4a !important;
         color: #FFF8EA !important;
-    }
-
-    /* Fix Streamlit error/success boxes text contrast */
-    div[data-baseweb="notification"] {
-        background-color: #ffffff !important;
-        border: 2px solid #815B5B !important;
-    }
-    div[data-baseweb="notification"] p {
-        color: #815B5B !important;
     }
     </style>
     """,
@@ -148,11 +139,11 @@ if submit_button:
       probability = result.get("churn_probability")
 
       st.subheader("Prediction Results:")
-      
-      # تعديل تصميم الكارد الخاص بالنتيجة عشان يظهر بشكل شيك وواضح مع الألوان
+
+      # ألوان الكارد بناءً على حالة العميل
       if status == "Churning":
-        bg_c = "#ffffff"
-        border_c = "#815B5B"
+        bg_c = "#FDECEA"
+        border_c = "#D93025"
         text_c = "#A50E0E"
         icon = "⚠️"
       else:
@@ -161,6 +152,7 @@ if submit_button:
         text_c = "#137333"
         icon = "✅"
 
+      # كارد النتائج المنسق والواضح جداً
       st.markdown(
           f"""
             <div style="
@@ -171,11 +163,11 @@ if submit_button:
                 margin-top: 10px;
                 box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             ">
-                <h4 style="color: {text_c} !important; margin: 0 0 6px 0; font-size: 18px; font-weight: bold;">
-                    {icon} Status: {status}
+                <h4 style="margin: 0 0 6px 0; font-size: 18px; font-weight: bold;">
+                    <span style="color: {text_c} !important;">{icon} Status: {status}</span>
                 </h4>
                 <p style="color: #333333 !important; margin: 0; font-size: 16px; font-weight: 600;">
-                    Churn Probability: <span style="color: {text_c};">{probability}</span>
+                    Churn Probability: <span style="color: {text_c} !important;">{probability}</span>
                 </p>
             </div>
         """,
