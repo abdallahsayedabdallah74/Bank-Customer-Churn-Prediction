@@ -6,135 +6,124 @@ st.set_page_config(
     page_title="Bank Customer Churn Prediction", page_icon="🏦", layout="centered"
 )
 
-# Custom CSS
+# Custom CSS - Modern Indigo + Slate palette
 st.markdown(
     """
     <style>
-    /* ---------- Layout ---------- */
-    .stApp {
-        background-color: #FFF8EA;
-    }
-    .block-container {
-        max-width: 780px !important;
-        padding-top: 2.5rem;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-    /* ---------- Title ---------- */
+    html, body, .stApp, [class*="css"] { font-family: 'Inter', sans-serif; }
+    .stApp { background-color: #F4F6FB; }
+    .block-container { max-width: 780px !important; padding-top: 2.5rem; }
+
+    /* Title */
     h1 {
-        color: #815B5B !important;
+        color: #0F172A !important;
         text-align: center;
-        font-family: 'Helvetica Neue', sans-serif;
-        font-weight: 700;
-        font-size: 2.1rem !important;
+        font-weight: 800;
+        font-size: 2rem !important;
+        letter-spacing: -0.5px;
         white-space: nowrap;
     }
+    h2, h3 { color: #0F172A !important; font-weight: 700; }
+    .stMarkdown p { color: #64748B !important; font-weight: 500; }
 
-    /* ---------- Text ---------- */
-    p, .stMarkdown p {
-        color: #815B5B !important;
-        font-size: 16px;
-        font-weight: 500;
-    }
-    h2, h3 {
-        color: #815B5B !important;
-    }
-
-    /* ---------- Form container ---------- */
+    /* Form card */
     [data-testid="stForm"] {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 16px;
-        box-shadow: 0 6px 24px rgba(129, 91, 91, 0.12);
-        border: 2px solid #815B5B;
+        background-color: #FFFFFF;
+        padding: 32px;
+        border-radius: 20px;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 10px 40px rgba(15, 23, 42, 0.06);
     }
 
-    /* ---------- Labels ---------- */
-    label, label p, .stNumberInput label, .stSelectbox label {
-        color: #815B5B !important;
+    /* Labels */
+    [data-testid="stWidgetLabel"] p {
+        color: #334155 !important;
         font-weight: 600 !important;
-        font-size: 14px !important;
+        font-size: 13px !important;
     }
 
-    /* ---------- Inputs (light style instead of dark) ---------- */
-    div[data-baseweb="input"],
-    div[data-baseweb="base-input"],
-    div[data-baseweb="select"] > div {
-        background-color: #FFF8EA !important;
-        border: 1.5px solid #C9A9A6 !important;
-        border-radius: 8px !important;
+    /* Inputs: light background on all layers */
+    [data-baseweb="input"],
+    [data-baseweb="input"] > div,
+    [data-baseweb="base-input"],
+    [data-baseweb="select"] > div,
+    [data-baseweb="select"] > div > div {
+        background-color: #F8FAFC !important;
     }
-    div[data-baseweb="input"]:focus-within,
-    div[data-baseweb="select"] > div:focus-within {
-        border-color: #815B5B !important;
-        box-shadow: 0 0 0 2px rgba(129, 91, 91, 0.2) !important;
+    [data-baseweb="input"],
+    [data-baseweb="select"] > div {
+        border: 1.5px solid #E2E8F0 !important;
+        border-radius: 10px !important;
+        transition: all 0.2s;
     }
-    input, textarea,
-    div[data-baseweb="select"] div,
-    div[data-baseweb="select"] span {
-        color: #4a3333 !important;
-        -webkit-text-fill-color: #4a3333 !important;
-        font-weight: 500;
-    }
-    div[data-baseweb="select"] svg {
-        fill: #815B5B !important;
+    [data-baseweb="input"]:focus-within,
+    [data-baseweb="select"] > div:focus-within {
+        border-color: #4F46E5 !important;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
     }
 
-    /* +/- buttons of number input */
+    /* Text inside inputs */
+    [data-baseweb="input"] input,
+    [data-baseweb="select"] div,
+    [data-baseweb="select"] span {
+        color: #0F172A !important;
+        -webkit-text-fill-color: #0F172A !important;
+        background-color: transparent !important;
+        font-weight: 500 !important;
+    }
+    [data-baseweb="select"] svg { fill: #64748B !important; }
+
+    /* +/- buttons */
     .stNumberInput button {
-        background-color: #F3E3D3 !important;
-        color: #815B5B !important;
+        background-color: #EEF2FF !important;
+        color: #4F46E5 !important;
         border: none !important;
     }
     .stNumberInput button:hover {
-        background-color: #815B5B !important;
-        color: #FFF8EA !important;
-    }
-    .stNumberInput button svg {
-        fill: currentColor !important;
+        background-color: #4F46E5 !important;
+        color: #FFFFFF !important;
     }
 
-    /* Dropdown menu list */
-    ul[role="listbox"],
-    div[data-baseweb="popover"] > div {
-        background-color: #ffffff !important;
+    /* Dropdown list */
+    [data-baseweb="popover"] ul,
+    [data-baseweb="menu"] { background-color: #FFFFFF !important; }
+    [data-baseweb="popover"] li,
+    [data-baseweb="menu"] li {
+        background-color: #FFFFFF !important;
+        color: #0F172A !important;
     }
-    li[role="option"] {
-        color: #815B5B !important;
-        background-color: #ffffff !important;
-    }
-    li[role="option"]:hover,
-    li[aria-selected="true"] {
-        background-color: #F3E3D3 !important;
-    }
+    [data-baseweb="popover"] li:hover,
+    [data-baseweb="menu"] li:hover { background-color: #EEF2FF !important; }
 
-    /* ---------- Submit button ---------- */
+    /* Submit button */
     .stFormSubmitButton button {
-        background-color: #815B5B !important;
+        background: linear-gradient(135deg, #4F46E5, #7C3AED) !important;
         width: 100%;
-        border-radius: 8px;
-        padding: 12px;
+        border-radius: 10px;
+        padding: 14px;
         border: none;
-        transition: 0.3s;
+        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+        transition: all 0.2s;
     }
-    .stFormSubmitButton button p,
-    .stFormSubmitButton button span,
-    .stFormSubmitButton button div {
-        color: #FFF8EA !important;
-        font-weight: bold !important;
+    .stFormSubmitButton button * {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
         font-size: 16px !important;
     }
     .stFormSubmitButton button:hover {
-        background-color: #6a4a4a !important;
+        transform: translateY(-1px);
+        box-shadow: 0 10px 28px rgba(79, 70, 229, 0.45);
     }
 
-    /* ---------- Error / notification boxes ---------- */
-    div[data-baseweb="notification"] {
-        background-color: #ffffff !important;
-        border: 2px solid #815B5B !important;
+    /* Error boxes */
+    [data-testid="stAlert"] {
+        background-color: #FEF2F2 !important;
+        border: 1px solid #FECACA !important;
+        border-radius: 12px;
     }
-    div[data-baseweb="notification"] p {
-        color: #815B5B !important;
-    }
+    [data-testid="stAlert"] * { color: #991B1B !important; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -210,24 +199,23 @@ if submit_button:
       st.subheader("Prediction Results:")
 
       if status == "Churning":
-        bg_c = "#FDECEA"
-        border_c = "#D93025"
-        text_c = "#A50E0E"
-        icon = "⚠️"
+        bg_c, border_c, text_c, icon = "#FEF2F2", "#DC2626", "#991B1B", "⚠️"
+        label = "High risk of churning"
       else:
-        bg_c = "#E6F4EA"
-        border_c = "#1E8E3E"
-        text_c = "#137333"
-        icon = "✅"
+        bg_c, border_c, text_c, icon = "#ECFDF5", "#059669", "#065F46", "✅"
+        label = "Likely to stay"
 
       st.markdown(
           f"""
-<div style="background-color: {bg_c}; border-left: 6px solid {border_c}; padding: 18px 20px; border-radius: 8px; margin-top: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-  <div style="color: {text_c} !important; margin: 0 0 8px 0; font-size: 20px; font-weight: 700;">
+<div style="background-color:{bg_c}; border:1px solid {border_c}33; border-left:6px solid {border_c}; padding:22px 24px; border-radius:14px; margin-top:12px; box-shadow:0 6px 24px rgba(15,23,42,0.06);">
+  <div style="color:{text_c} !important; font-size:20px; font-weight:800; margin-bottom:6px;">
     {icon} Status: {status}
   </div>
-  <div style="color: #333333 !important; margin: 0; font-size: 16px; font-weight: 600;">
-    Churn Probability: <span style="color: {text_c} !important; font-weight: 700;">{probability}</span>
+  <div style="color:{text_c} !important; font-size:14px; font-weight:500; opacity:0.85; margin-bottom:10px;">
+    {label}
+  </div>
+  <div style="color:#0F172A !important; font-size:16px; font-weight:600;">
+    Churn Probability: <span style="color:{border_c} !important; font-weight:800; font-size:22px;">{probability}</span>
   </div>
 </div>
 """,
