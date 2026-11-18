@@ -63,7 +63,7 @@ st.markdown(
         transition: 0.3s;
     }
     .stFormSubmitButton button:hover {
-        background-color: #6a4a4a !important;
+        background-color: #815B5B !important;
         color: #FFF8EA !important;
     }
 
@@ -151,8 +151,8 @@ if submit_button:
       
       # تعديل تصميم الكارد الخاص بالنتيجة عشان يظهر بشكل شيك وواضح مع الألوان
       if status == "Churning":
-        bg_c = "#FFF8EA"
-        border_c = "#ffffff"
+        bg_c = "#ffffff"
+        border_c = "#815B5B"
         text_c = "#A50E0E"
         icon = "⚠️"
       else:
