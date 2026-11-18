@@ -49,11 +49,11 @@ st.markdown(
         color: #815B5B !important;
         font-weight: 600 !important;
     }
-
-    /* Submit Button Styling */
+    
+   /* Submit Button Styling - واضحة وبتبرق من غير ما تقف بالماوس */
     div.stFormSubmitButton > button {
         background-color: #815B5B !important;
-        color: #FFF8EA !important;
+        color: #FFFFFF !important;
         font-weight: bold;
         width: 100%;
         border-radius: 8px;
@@ -62,9 +62,14 @@ st.markdown(
         font-size: 16px;
         transition: 0.3s;
     }
+    
+    div.stFormSubmitButton > button * {
+        color: #FFFFFF !important;
+    }
+
     div.stFormSubmitButton > button:hover {
         background-color: #6a4a4a !important;
-        color: #FFF8EA !important;
+        color: #FFFFFF !important;
     }
     </style>
     """,
