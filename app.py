@@ -148,10 +148,39 @@ if submit_button:
       probability = result.get("churn_probability")
 
       st.subheader("Prediction Results:")
+      
+      # تعديل تصميم الكارد الخاص بالنتيجة عشان يظهر بشكل شيك وواضح مع الألوان
       if status == "Churning":
-        st.error(f"⚠️ **Status:** {status} (Probability: {probability})")
+        bg_c = "#FDECEA"
+        border_c = "#D93025"
+        text_c = "#A50E0E"
+        icon = "⚠️"
       else:
-        st.success(f"✅ **Status:** {status} (Probability: {probability})")
+        bg_c = "#E6F4EA"
+        border_c = "#1E8E3E"
+        text_c = "#137333"
+        icon = "✅"
+
+      st.markdown(
+          f"""
+            <div style="
+                background-color: {bg_c};
+                border-left: 6px solid {border_c};
+                padding: 16px;
+                border-radius: 8px;
+                margin-top: 10px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            ">
+                <h4 style="color: {text_c} !important; margin: 0 0 6px 0; font-size: 18px;">
+                    {icon} Status: {status}
+                </h4>
+                <p style="color: #333333 !important; margin: 0; font-size: 15px;">
+                    Churn Probability: <b>{probability}</b>
+                </p>
+            </div>
+        """,
+          unsafe_allow_html=True,
+      )
     else:
       st.error(f"Error from API: {response.text}")
 
