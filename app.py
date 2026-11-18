@@ -1,6 +1,7 @@
 
 import requests
 import streamlit as st
+import textwrap
 
 # ==========================================
 # 1. Page Configuration
@@ -26,9 +27,9 @@ st.markdown("""
 
 /* Main Container */
 .block-container {
+    max-width: 850px;
     padding-top: 2rem;
     padding-bottom: 3rem;
-    max-width: 850px;
 }
 
 /* Main Title */
@@ -36,7 +37,7 @@ h1 {
     color: #183B56 !important;
     text-align: center;
     font-weight: 800 !important;
-    font-size: 2.5rem !important;
+    font-size: 2.3rem !important;
 }
 
 /* Subtitle */
@@ -44,7 +45,7 @@ h1 {
     color: #64748B;
 }
 
-/* Subheaders */
+/* Section Titles */
 h2, h3 {
     color: #183B56 !important;
     font-weight: 700 !important;
@@ -59,40 +60,65 @@ h2, h3 {
     box-shadow: 0 8px 25px rgba(24, 59, 86, 0.07);
 }
 
-/* Form Labels */
+/* Labels */
 [data-testid="stForm"] label {
     color: #334155 !important;
     font-weight: 600 !important;
 }
 
-/* Number Input */
-[data-testid="stNumberInput"] input {
-    color: #183B56 !important;
-    background-color: #F8FAFC !important;
-    font-weight: 500;
-}
-
-div[data-baseweb="input"] {
+/* Number Input Container */
+[data-testid="stNumberInput"] div[data-baseweb="input"] {
     background-color: #F8FAFC !important;
     border: 1px solid #CBD5E1 !important;
     border-radius: 9px !important;
+    overflow: hidden;
+}
+
+/* Number Input Text */
+[data-testid="stNumberInput"] input {
+    background-color: #F8FAFC !important;
+    color: #183B56 !important;
+    border: none !important;
+}
+
+/* Number Input Buttons */
+[data-testid="stNumberInput"] button {
+    background-color: #E2E8F0 !important;
+    color: #183B56 !important;
+    border: none !important;
 }
 
 /* Select Box */
-div[data-baseweb="select"] > div {
+[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
     background-color: #F8FAFC !important;
     border: 1px solid #CBD5E1 !important;
     border-radius: 9px !important;
-}
-
-div[data-baseweb="select"] * {
     color: #183B56 !important;
 }
 
-/* Focus Effect */
-div[data-baseweb="input"]:focus-within,
-div[data-baseweb="select"]:focus-within {
+/* Select Box Text */
+[data-testid="stSelectbox"] div[data-baseweb="select"] span {
+    color: #183B56 !important;
+}
+
+/* Select Dropdown Menu */
+[data-baseweb="popover"] {
+    background-color: #FFFFFF !important;
+}
+
+[data-baseweb="menu"] {
+    background-color: #FFFFFF !important;
+}
+
+[data-baseweb="menu"] * {
+    color: #183B56 !important;
+}
+
+/* Input Focus */
+[data-testid="stNumberInput"] div[data-baseweb="input"]:focus-within,
+[data-testid="stSelectbox"] div[data-baseweb="select"] > div:focus-within {
     border-color: #0D9488 !important;
+    box-shadow: 0 0 0 1px #0D9488 !important;
 }
 
 /* Predict Button */
@@ -101,10 +127,10 @@ div[data-baseweb="select"]:focus-within {
     color: #FFFFFF !important;
     border: none !important;
     border-radius: 10px !important;
-    padding: 12px 20px !important;
+    width: 100%;
+    min-height: 48px;
     font-size: 16px !important;
     font-weight: 700 !important;
-    width: 100%;
     transition: 0.3s ease;
 }
 
@@ -116,32 +142,39 @@ div[data-baseweb="select"]:focus-within {
 
 /* Prediction Result Card */
 .prediction-card {
-    padding: 24px;
+    padding: 25px;
     border-radius: 14px;
     margin-top: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.04);
 }
 
-.prediction-card h4 {
-    margin: 0 0 12px 0;
-    font-size: 20px;
-}
-
-.prediction-card p {
-    margin: 0;
-    font-size: 15px;
-}
-
-/* Result Probability */
-.probability {
-    font-size: 32px;
+/* Result Title */
+.prediction-title {
+    font-size: 21px;
     font-weight: 800;
-    margin-top: 8px;
+    margin-bottom: 12px;
 }
 
-/* Alert Messages */
-.stAlert {
-    border-radius: 12px;
+/* Result Description */
+.prediction-message {
+    color: #475569;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* Probability Label */
+.probability-label {
+    color: #64748B;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Probability Value */
+.probability-value {
+    font-size: 36px;
+    font-weight: 800;
+    margin-top: 5px;
 }
 
 /* Footer */
@@ -149,7 +182,18 @@ div[data-baseweb="select"]:focus-within {
     text-align: center;
     color: #94A3B8;
     font-size: 13px;
-    margin-top: 30px;
+    margin-top: 35px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 1.7rem !important;
+    }
+
+    [data-testid="stForm"] {
+        padding: 18px;
+    }
 }
 
 </style>
@@ -167,7 +211,6 @@ st.markdown(
     <p style="
         text-align: center;
         font-size: 16px;
-        color: #64748B;
         margin-bottom: 30px;
     ">
         Enter customer details below to check if they are at risk of churning.
@@ -261,7 +304,7 @@ with st.form("churn_form"):
     st.markdown("<br>", unsafe_allow_html=True)
 
     submit_button = st.form_submit_button(
-        label="🔍 Predict Churn",
+        "🔍 Predict Churn",
         use_container_width=True
     )
 
@@ -318,7 +361,7 @@ if submit_button:
                 icon = "⚠️"
 
                 message = (
-                    "This customer is likely to leave the bank."
+                    "This customer is at risk of leaving the bank."
                 )
 
             else:
@@ -332,41 +375,41 @@ if submit_button:
                     "This customer is likely to stay with the bank."
                 )
 
+            # Format probability if it is numeric
+            if isinstance(probability, (int, float)):
+                probability_display = f"{probability:.2f}%"
+            else:
+                probability_display = str(probability)
+
+            # Build Result Card
+            result_card = f"""
+<div class="prediction-card" style="
+    background-color: {bg_c};
+    border-left: 6px solid {border_c};
+">
+
+    <div class="prediction-title" style="color: {text_c};">
+        {icon} Prediction: {status}
+    </div>
+
+    <div class="prediction-message">
+        {message}
+    </div>
+
+    <div class="probability-label">
+        CHURN PROBABILITY
+    </div>
+
+    <div class="probability-value" style="color: {text_c};">
+        {probability_display}
+    </div>
+
+</div>
+"""
+
+            # Display HTML correctly
             st.markdown(
-                f"""
-                <div class="prediction-card"
-                     style="
-                        background-color: {bg_c};
-                        border-left: 6px solid {border_c};
-                     ">
-
-                    <h4 style="color: {text_c};">
-                        {icon} Prediction: {status}
-                    </h4>
-
-                    <p style="color: #334155;">
-                        {message}
-                    </p>
-
-                    <div style="margin-top: 20px;">
-
-                        <span style="
-                            color: #64748B;
-                            font-size: 14px;
-                            font-weight: 600;
-                        ">
-                            Churn Probability
-                        </span>
-
-                        <div class="probability"
-                             style="color: {text_c};">
-                            {probability}
-                        </div>
-
-                    </div>
-
-                </div>
-                """,
+                textwrap.dedent(result_card),
                 unsafe_allow_html=True
             )
 
@@ -402,7 +445,9 @@ if submit_button:
 st.markdown(
     """
     <div class="footer">
-        Bank Customer Churn Prediction | Powered by Machine Learning
+        Bank Customer Churn Prediction
+        <br>
+        Powered by Machine Learning
     </div>
     """,
     unsafe_allow_html=True
