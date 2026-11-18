@@ -166,16 +166,16 @@ if submit_button:
             <div style="
                 background-color: {bg_c};
                 border-left: 6px solid {border_c};
-                padding: 16px;
+                padding: 18px;
                 border-radius: 8px;
                 margin-top: 10px;
                 box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             ">
-                <h4 style="color: {text_c} !important; margin: 0 0 6px 0; font-size: 18px;">
+                <h4 style="color: {text_c} !important; margin: 0 0 6px 0; font-size: 18px; font-weight: bold;">
                     {icon} Status: {status}
                 </h4>
-                <p style="color: #333333 !important; margin: 0; font-size: 15px;">
-                    Churn Probability: <b>{probability}</b>
+                <p style="color: #333333 !important; margin: 0; font-size: 16px; font-weight: 600;">
+                    Churn Probability: <span style="color: {text_c};">{probability}</span>
                 </p>
             </div>
         """,
