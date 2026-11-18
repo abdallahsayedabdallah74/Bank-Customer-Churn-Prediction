@@ -53,7 +53,7 @@ st.markdown(
     /* Submit Button */
     .stFormSubmitButton button {
         background-color: #815B5B !important;
-        color: #FFF8EA !important;
+        color: #815B5B !important;
         font-weight: bold;
         width: 100%;
         border-radius: 8px;
