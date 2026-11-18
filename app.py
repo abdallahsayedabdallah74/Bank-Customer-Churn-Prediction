@@ -6,124 +6,75 @@ st.set_page_config(
     page_title="Bank Customer Churn Prediction", page_icon="🏦", layout="centered"
 )
 
-# Custom CSS - Modern Indigo + Slate palette
+# Custom CSS for perfect contrast and custom color palette
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-    html, body, .stApp, [class*="css"] { font-family: 'Inter', sans-serif; }
-    .stApp { background-color: #F4F6FB; }
-    .block-container { max-width: 780px !important; padding-top: 2.5rem; }
-
-    /* Title */
+    /* Main Background */
+    .stApp {
+        background-color: #FFF8EA;
+    }
+    
+    /* Main Title */
     h1 {
-        color: #0F172A !important;
+        color: #815B5B !important;
         text-align: center;
-        font-weight: 800;
-        font-size: 2rem !important;
-        letter-spacing: -0.5px;
-        white-space: nowrap;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-weight: 700;
     }
-    h2, h3 { color: #0F172A !important; font-weight: 700; }
-    .stMarkdown p { color: #64748B !important; font-weight: 500; }
+    
+    /* Subtitle & general text */
+    p, .stMarkdown p {
+        color: #815B5B !important;
+        font-size: 16px;
+        font-weight: 500;
+    }
 
-    /* Form card */
+    /* Subheaders like Prediction Results */
+    h2, h3 {
+        color: #815B5B !important;
+    }
+
+    /* Form Container */
     [data-testid="stForm"] {
-        background-color: #FFFFFF;
-        padding: 32px;
-        border-radius: 20px;
-        border: 1px solid #E2E8F0;
-        box-shadow: 0 10px 40px rgba(15, 23, 42, 0.06);
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 6px 24px rgba(129, 91, 91, 0.12);
+        border: 2px solid #815B5B;
     }
 
-    /* Labels */
-    [data-testid="stWidgetLabel"] p {
-        color: #334155 !important;
+    /* Form Labels */
+    label, .stNumberInput label, .stSelectbox label {
+        color: #815B5B !important;
         font-weight: 600 !important;
-        font-size: 13px !important;
     }
 
-    /* Inputs: light background on all layers */
-    [data-baseweb="input"],
-    [data-baseweb="input"] > div,
-    [data-baseweb="base-input"],
-    [data-baseweb="select"] > div,
-    [data-baseweb="select"] > div > div {
-        background-color: #F8FAFC !important;
-    }
-    [data-baseweb="input"],
-    [data-baseweb="select"] > div {
-        border: 1.5px solid #E2E8F0 !important;
-        border-radius: 10px !important;
-        transition: all 0.2s;
-    }
-    [data-baseweb="input"]:focus-within,
-    [data-baseweb="select"] > div:focus-within {
-        border-color: #4F46E5 !important;
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
-    }
-
-    /* Text inside inputs */
-    [data-baseweb="input"] input,
-    [data-baseweb="select"] div,
-    [data-baseweb="select"] span {
-        color: #0F172A !important;
-        -webkit-text-fill-color: #0F172A !important;
-        background-color: transparent !important;
-        font-weight: 500 !important;
-    }
-    [data-baseweb="select"] svg { fill: #64748B !important; }
-
-    /* +/- buttons */
-    .stNumberInput button {
-        background-color: #EEF2FF !important;
-        color: #4F46E5 !important;
-        border: none !important;
-    }
-    .stNumberInput button:hover {
-        background-color: #4F46E5 !important;
-        color: #FFFFFF !important;
-    }
-
-    /* Dropdown list */
-    [data-baseweb="popover"] ul,
-    [data-baseweb="menu"] { background-color: #FFFFFF !important; }
-    [data-baseweb="popover"] li,
-    [data-baseweb="menu"] li {
-        background-color: #FFFFFF !important;
-        color: #0F172A !important;
-    }
-    [data-baseweb="popover"] li:hover,
-    [data-baseweb="menu"] li:hover { background-color: #EEF2FF !important; }
-
-    /* Submit button */
+    /* Submit Button */
     .stFormSubmitButton button {
-        background: linear-gradient(135deg, #4F46E5, #7C3AED) !important;
+        background-color: #815B5B !important;
+        color: #FFF8EA !important;
+        font-weight: bold;
         width: 100%;
-        border-radius: 10px;
-        padding: 14px;
+        border-radius: 8px;
+        padding: 12px;
         border: none;
-        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
-        transition: all 0.2s;
-    }
-    .stFormSubmitButton button * {
-        color: #FFFFFF !important;
-        font-weight: 700 !important;
-        font-size: 16px !important;
+        font-size: 16px;
+        transition: 0.3s;
     }
     .stFormSubmitButton button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 28px rgba(79, 70, 229, 0.45);
+        background-color: #6a4a4a !important;
+        color: #FFF8EA !important;
     }
 
-    /* Error boxes */
-    [data-testid="stAlert"] {
-        background-color: #FEF2F2 !important;
-        border: 1px solid #FECACA !important;
-        border-radius: 12px;
+    /* Fix Streamlit error/success boxes text contrast */
+    div[data-baseweb="notification"] {
+        background-color: #ffffff !important;
+        border: 2px solid #815B5B !important;
     }
-    [data-testid="stAlert"] * { color: #991B1B !important; }
+    div[data-baseweb="notification"] p {
+        color: #815B5B !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -197,28 +148,37 @@ if submit_button:
       probability = result.get("churn_probability")
 
       st.subheader("Prediction Results:")
-
+      
+      # تعديل تصميم الكارد الخاص بالنتيجة عشان يظهر بشكل شيك وواضح مع الألوان
       if status == "Churning":
-        bg_c, border_c, text_c, icon = "#FEF2F2", "#DC2626", "#991B1B", "⚠️"
-        label = "High risk of churning"
+        bg_c = "#FDECEA"
+        border_c = "#D93025"
+        text_c = "#A50E0E"
+        icon = "⚠️"
       else:
-        bg_c, border_c, text_c, icon = "#ECFDF5", "#059669", "#065F46", "✅"
-        label = "Likely to stay"
+        bg_c = "#E6F4EA"
+        border_c = "#1E8E3E"
+        text_c = "#137333"
+        icon = "✅"
 
       st.markdown(
           f"""
-<div style="background-color:{bg_c}; border:1px solid {border_c}33; border-left:6px solid {border_c}; padding:22px 24px; border-radius:14px; margin-top:12px; box-shadow:0 6px 24px rgba(15,23,42,0.06);">
-  <div style="color:{text_c} !important; font-size:20px; font-weight:800; margin-bottom:6px;">
-    {icon} Status: {status}
-  </div>
-  <div style="color:{text_c} !important; font-size:14px; font-weight:500; opacity:0.85; margin-bottom:10px;">
-    {label}
-  </div>
-  <div style="color:#0F172A !important; font-size:16px; font-weight:600;">
-    Churn Probability: <span style="color:{border_c} !important; font-weight:800; font-size:22px;">{probability}</span>
-  </div>
-</div>
-""",
+            <div style="
+                background-color: {bg_c};
+                border-left: 6px solid {border_c};
+                padding: 18px;
+                border-radius: 8px;
+                margin-top: 10px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            ">
+                <h4 style="color: {text_c} !important; margin: 0 0 6px 0; font-size: 18px; font-weight: bold;">
+                    {icon} Status: {status}
+                </h4>
+                <p style="color: #333333 !important; margin: 0; font-size: 16px; font-weight: 600;">
+                    Churn Probability: <span style="color: {text_c};">{probability}</span>
+                </p>
+            </div>
+        """,
           unsafe_allow_html=True,
       )
     else:
