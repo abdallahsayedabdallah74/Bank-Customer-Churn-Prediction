@@ -151,8 +151,8 @@ if submit_button:
       
       # تعديل تصميم الكارد الخاص بالنتيجة عشان يظهر بشكل شيك وواضح مع الألوان
       if status == "Churning":
-        bg_c = "#815B5B"
-        border_c = "#D93025"
+        bg_c = "#FFF8EA"
+        border_c = "#ffffff"
         text_c = "#A50E0E"
         icon = "⚠️"
       else:
