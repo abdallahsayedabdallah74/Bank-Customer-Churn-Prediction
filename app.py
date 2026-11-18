@@ -130,7 +130,7 @@ with col_form:
     geography = st.selectbox("Geography", options=["France", "Spain", "Germany"])
     gender = st.selectbox("Gender", options=[address := "Male", "Female"])
 
-    submit_button = st.form_submit_button(label="Predict Churn")
+   submit_button = st.form_submit_button(label="Predict Churn")
 
   if submit_button:
     input_data = {
@@ -155,8 +155,6 @@ with col_form:
         status = result.get("status")
         probability = result.get("churn_probability")
 
-        st.subheader("Prediction Results:")
-
         if status == "Churning":
           bg_c = "#FDECEA"
           border_c = "#D93025"
@@ -168,20 +166,21 @@ with col_form:
           text_c = "#137333"
           icon = "✅"
 
+        # كارد النتيجة جوه الفورم مباشرة تحت الزرار
         st.markdown(
             f"""
                 <div style="
                     background-color: {bg_c};
                     border-left: 6px solid {border_c};
-                    padding: 18px;
+                    padding: 16px;
                     border-radius: 8px;
-                    margin-top: 10px;
+                    margin-top: 15px;
                     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
                 ">
-                    <p style="color: {text_c} !important; font-size: 18px; font-weight: bold; margin: 0 0 8px 0; text-align: left !important;">
+                    <p style="color: {text_c} !important; font-size: 17px; font-weight: bold; margin: 0 0 6px 0; text-align: left !important;">
                         {icon} Status: {status}
                     </p>
-                    <p style="color: #333333 !important; font-size: 16px; font-weight: 600; margin: 0; text-align: left !important;">
+                    <p style="color: #333333 !important; font-size: 15px; font-weight: 600; margin: 0; text-align: left !important;">
                         Churn Probability: <span style="color: {text_c} !important;">{probability}</span>
                     </p>
                 </div>
