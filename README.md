@@ -58,7 +58,7 @@ git clone [https://github.com/abdallahsayedabdallah74/Bank-Customer-Churn-Predic
 cd Bank-Customer-Churn-Prediction
 ```
 
-### 2. Set up the environment
+### 2. 🔃Set up the environment
 
 ```bash
 python -m venv .venv
@@ -135,7 +135,7 @@ Configured API_URL in app.py to communicate directly with the live Railway FastA
 Styled with a custom light-mode palette (#FFF8EA background & #815B5B typography/accents) for clean readability and responsive UX.
 
 
-## 📊 Model & Input Features
+## 📊 Model & Input Features 
 
 ### Input Features
 
