@@ -49,7 +49,7 @@ Bank-Customer-Churn-Prediction/
 ```
 ---
 
-## 🚀 Getting Started (Local Development)
+## 🚀✅ Getting Started (Local Development)
 
 ### 1. Clone the repository
 
